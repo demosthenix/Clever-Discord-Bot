@@ -3,14 +3,15 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
+from googletrans import Translator
 import discord
 import time
 
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument("--headless")
 chrome_options.add_argument("--window-size=1920x1080")
-#driver = webdriver.Chrome('/Users/Demosthenix/Downloads/chromedriver-1', options=chrome_options)
-driver = webdriver.Chrome('/Users/Demosthenix/Downloads/chromedriver-1')
+driver = webdriver.Chrome('/Users/Demosthenix/Downloads/chromedriver-1', options=chrome_options)
+#driver = webdriver.Chrome('/Users/Demosthenix/Downloads/chromedriver-1')
 driver.get('https://www.cleverbot.com/')
 def getResp(msg, driver=driver):
     try:
@@ -20,16 +21,23 @@ def getResp(msg, driver=driver):
         pass
 
     target = driver.find_element(By.XPATH, '//*[@id="avatarform"]/input[1]')
+    trans = Translator()
+    msg_lang = trans.detect(msg).lang
+    if msg_lang != 'en' or msg_lang != 'hi':
+        msg = trans.translate(msg, src=msg_lang, dest='en').text
     target.send_keys(msg)
     target.send_keys(Keys.ENTER)
     #time.sleep(10)
     delay = 20
     myElem = WebDriverWait(driver, delay).until(EC.presence_of_element_located((By.XPATH, '//*[@id="snipTextIcon"]')))
-    return driver.find_element(By.XPATH, '//*[@id="line1"]/span[1]').text
+    resp = driver.find_element(By.XPATH, '//*[@id="line1"]/span[1]').text
+    if msg_lang != 'en' or msg_lang != 'hi':
+        resp = trans.translate(resp, src='en', dest=msg_lang).text
+    return resp
 
 client = discord.Client()
 
-TOKEN = 'XXXXXXXXXXXXX'
+TOKEN = 'NjQyMzkxNTk3NDAwNTg4Mjk0.XcWPyw.Z4ZLu2RfPp8n0OqKvhMXMEqeTqY'
 
 
 @client.event
