@@ -50,7 +50,8 @@ async def on_message(message):
     if message.author == client.user:
         return
     elif client.user in message.mentions:
-        msg = ' '.join(message.content.split('<@!{'+str(client.user.id)+'}>'))
+        whitelist = set('abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+        msg = ''.join(filter(whitelist.__contains__, message.content))
         await message.channel.trigger_typing()
         resp = getResp(msg)
         await message.channel.send(resp)
