@@ -42,7 +42,7 @@ def getResp(msg, driver=driver):
 
 client = discord.Client()
 
-TOKEN = 'NjQyMzkxNTk3NDAwNTg4Mjk0.XcWPyw.Q-rQYdu3RCYHxADVmmPBzQkKgBE'
+TOKEN = 'NzYzNjY1NDU3NDU0MjUyMDMy.X37A4Q.-2Sd7tx7BKQiGVpoP1pEHF6Nxbk'
 
 
 @client.event
