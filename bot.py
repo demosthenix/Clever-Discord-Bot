@@ -7,7 +7,7 @@ from googletrans import Translator
 import discord
 import time
 
-GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google-chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
 chrome_options = webdriver.ChromeOptions()
