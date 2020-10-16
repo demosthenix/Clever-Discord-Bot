@@ -50,7 +50,7 @@ async def on_message(message):
     if message.author == client.user:
         return
     elif client.user in message.mentions:
-        msg = ' '.join(message.content.split('<@!{'+client.user.id+'}>'))
+        msg = ' '.join(message.content.split('<@!{'+str(client.user.id)+'}>'))
         await message.channel.trigger_typing()
         resp = getResp(msg)
         await message.channel.send(resp)
