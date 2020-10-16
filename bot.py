@@ -7,10 +7,14 @@ from googletrans import Translator
 import discord
 import time
 
+GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
+CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument("--headless")
-chrome_options.add_argument("--window-size=1920x1080")
-driver = webdriver.Chrome('/Users/Demosthenix/Downloads/chromedriver-1', options=chrome_options)
+chrome_options.add_argument('--disable-gpu')
+chrome_options.add_argument('--no-sandbox')
+chrome_options.binary_location = GOOGLE_CHROME_PATH
+driver = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, options=chrome_options)
 #driver = webdriver.Chrome('/Users/Demosthenix/Downloads/chromedriver-1')
 driver.get('https://www.cleverbot.com/')
 def getResp(msg, driver=driver):
@@ -37,7 +41,7 @@ def getResp(msg, driver=driver):
 
 client = discord.Client()
 
-TOKEN = 'NjQyMzkxNTk3NDAwNTg4Mjk0.XcWPyw.Z4ZLu2RfPp8n0OqKvhMXMEqeTqY'
+TOKEN = 'NjQyMzkxNTk3NDAwNTg4Mjk0.XcWPyw.Q-rQYdu3RCYHxADVmmPBzQkKgBE'
 
 
 @client.event
