@@ -14,7 +14,7 @@ chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.binary_location = GOOGLE_CHROME_PATH
-driver = webdriver.Chrome(execution_path=CHROMEDRIVER_PATH, options=chrome_options)
+driver = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=chrome_options)
 #driver = webdriver.Chrome('/Users/Demosthenix/Downloads/chromedriver-1')
 driver.get('https://www.cleverbot.com/')
 def getResp(msg, driver=driver):
